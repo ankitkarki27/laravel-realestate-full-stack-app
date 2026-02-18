@@ -24,11 +24,6 @@
             </td>
         </tr>
 
-        <tr>
-            <td>Password: </td>
-            <td><input type="password" name="password" placeholder="Password">
-            </td>
-        </tr>
 
         <tr>
             <td colspan="2">

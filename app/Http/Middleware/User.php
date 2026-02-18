@@ -16,7 +16,7 @@ class User
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Auth::gaurd('web')->check()){
+        if(!Auth::guard('web')->check()){
             return redirect()->route('login')->with('error','You should be logged in to access this page');
         } 
         return $next($request);
