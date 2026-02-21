@@ -7,6 +7,7 @@
          @auth
              <a href="{{ route('home') }}">{{ auth()->user()->name }}</a>
              <a href="{{ route('profile') }}">Profile </a>
+             <a href="{{ route('dashboard') }}">Dashboard </a>
              <a href="{{ route('logout') }}">Logout </a>
          @else
              <a href="{{ route('login') }}">Login</a>

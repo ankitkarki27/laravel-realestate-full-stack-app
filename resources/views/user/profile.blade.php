@@ -46,18 +46,10 @@
 
 <body>
 
-    <header>
-        <div class="logo">RealEstateHomes</div>
-        <nav>
-            <a href="{{ route('home') }}">Home</a>
-            <a href="{{ route('about') }}">About</a>
-            <a href="{{ route('login') }}">Login</a>
-            <a href="{{ route('registration') }}">Register</a>
-        </nav>
-    </header>
+    @include('user.top')
 
     <div class="content">
-        <h2>Registration</h2>
+        <h2>Profile</h2>
 
         @if ($errors->any())
             @foreach ($errors->all() as $error)
@@ -78,20 +70,23 @@
             <table>
 
                 <tr>
-                    <td>Exisiting Photo: </td>
+                    <td>Existing Photo: </td>
                     <td>
                         @if(Auth::guard('web')->user()->photo == null)
                         No Photo Found
                         @else
-                        <img src="{{ asset('uploads/'.Auth::guard()->user()->photo) }}" alt="user photo "
+                        <img src="{{ asset('uploads/'.Auth::guard('web')->user()->photo) }}" alt="user photo "
                         style="width:100px;height:auto;"/>
                         @endif
                     </td>
                 </tr>
-                {{-- <tr>
+                <tr>
                     <td>Changed Photo: </td>
-                    <td><input type="file" name="photo" value="{{ Auth::guard('web')->user()->name }}"></td>
-                </tr> --}}
+                    <td>
+                        <input type="file" name="photo" />
+                        {{-- <input type="file" name="photo" value="{{ Auth::guard('web')->user()->name }}"> --}}
+                    </td>
+                </tr>
                 <tr>
                     <td>Name: </td>
                     <td><input type="text" name="name" value="{{ Auth::guard('web')->user()->name }}"></td>
@@ -101,7 +96,34 @@
                     <td>Email: </td>
                     <td><input type="text" name="email" value="{{ Auth::guard('web')->user()->email }}"></td>
                 </tr>
-
+                <tr>
+                    <td>Phone: </td>
+                    <td><input type="text" name="phone" value="{{ Auth::guard('web')->user()->phone }}"></td>
+                </tr>
+                <tr>
+                    <td>Address: </td>
+                    <td><input type="text" name="address" value="{{ Auth::guard('web')->user()->address }}"></td>
+                </tr>
+                <tr>
+                    <td>Country: </td>
+                    <td><input type="text" name="country" value="{{ Auth::guard('web')->user()->country }}"></td>
+                </tr>
+                <tr>
+                    <td>State: </td>
+                    <td><input type="text" name="state" value="{{ Auth::guard('web')->user()->state }}"></td>
+                </tr>
+                <tr>
+                    <td>Zip: </td>
+                    <td><input type="text" name="zip" value="{{ Auth::guard('web')->user()->zip }}"></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td>Confirm Password:</td>
+                    <td><input type="password" name="confirm_password"></td>
+                </tr>
                 <tr>
                     <td colspan="2">
                         <button type="submit">Update</button>
@@ -112,9 +134,7 @@
 
     </div>
 
-    <footer>
-        © {{ date('Y') }} RealEstateHomes
-    </footer>
+   @include('user.bottom')
 
 </body>
 
