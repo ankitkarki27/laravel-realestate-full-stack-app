@@ -11,6 +11,8 @@ Route::get('/about',[FrontController::class,'about'])->name('about');
 //user , usermiddleware is named as auth in bootstrap/app.php
 Route::middleware('auth')->group(function(){
     Route::get('/dashboard',[UserController::class,'dashboard'])->name('dashboard');
+    Route::get('/profile',[UserController::class,'profile'])->name('profile');
+    Route::post('/profile-submit',[UserController::class,'profile_submit'])->name('profile_submit');
 });
 
 Route::get('/registration',[UserController::class,'registration'])->name('registration');

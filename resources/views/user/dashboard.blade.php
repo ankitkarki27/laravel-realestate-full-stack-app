@@ -46,18 +46,10 @@
 
 <body>
 
-    <header>
-        <div class="logo">RealEstateHomes</div>
-        <nav>
-            <a href="{{ route('home') }}">Home</a>
-            <a href="{{ route('about') }}">About</a>
-            <a href="{{ route('login') }}">Login</a>
-            <a href="{{ route('registration') }}">Register</a>
-        </nav>
-    </header>
+   @include('user.top')
     <h2>This is user dashboard</h2>
     <p>
-        Welcome {{ Auth::guard(('web')->user()->name) }} to your dashboard.
+        Welcome {{ Auth::guard('web')->user()->name }} to your dashboard.
     </p>
     <a href="{{ route('logout') }}">Logout </a>
 

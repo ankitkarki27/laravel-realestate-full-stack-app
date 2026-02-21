@@ -156,4 +156,12 @@ class UserController extends Controller
 
         return redirect()->route('login')->with('success', 'Password reset successfully');
     }
+
+    public function profile(){
+        return view ('user.profile');
+    }
+
+    public function profile_submit(Request $request){
+        
+    }
 }
