@@ -166,7 +166,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . Auth::guard('web')->user()->id,
+            // 'email' => 'required|email|unique:users,email,' . Auth::guard('web')->user()->id,
         ]);
 
         //logged in user id
@@ -178,9 +178,6 @@ class UserController extends Controller
                 'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
             $final_name = 'user_' . time() . '.' . $request->photo->extension();
-            // if($user->photo !=''){
-            //     unlink(public_path('uploads/'.$user->photo));
-            // }
             if ($user->photo && file_exists(public_path('uploads/' . $user->photo))) {
                 unlink(public_path('uploads/' . $user->photo));
             }
@@ -196,7 +193,7 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
         }
         $user->name = $request->name;
-        $user->email = $request->email;
+        // $user->email = $request->email;
         $user->phone = $request->phone;
         $user->address = $request->address;
         $user->state = $request->state;

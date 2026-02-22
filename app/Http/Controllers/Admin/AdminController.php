@@ -102,4 +102,46 @@ class AdminController extends Controller
 
        return redirect()->route('admin_login')->with('success','Password reset successfully');
     }
+
+       public function admin_profile()
+    {
+        return view('admin.profile');
+    }
+
+    public function admin_profile_submit(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            // 'email' => 'required|email|unique:users,email,' . Auth::guard('web')->user()->id,
+        ]);
+
+        //logged in admin id
+        $admin = Admin::where('id', Auth::guard('admin')->user()->id)->first();
+        // $admin = Auth::guard('admin')->user();
+        //existing admin id is in hand
+        if ($request->photo) {
+            $request->validate([
+                'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $final_name = 'admin_' . time() . '.' . $request->photo->extension();
+            if ($admin->photo && file_exists(public_path('uploads/' . $admin->photo))) {
+                unlink(public_path('uploads/' . $admin->photo));
+            }
+            $request->photo->move(public_path('uploads'), $final_name);
+            $admin->photo = $final_name;
+        }
+
+        if ($request->password) {
+            $request->validate([
+                'password' => 'required',
+                'confirm_password' => 'required|same:password',
+            ]);
+            $admin->password = Hash::make($request->password);
+        }
+        $admin->name = $request->name;
+        // $user->email = $request->email;
+
+        $admin->save();
+        return redirect()->back()->with('success','Profile Updated successfully');
+    }
 }

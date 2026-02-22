@@ -46,7 +46,7 @@
 
 <body>
 
-    @include('user.top')
+    {{-- @include('user.top') --}}
 
     <div class="content">
         <h2>Profile</h2>
@@ -65,17 +65,17 @@
             <div style="color:red">{{ session('error') }}</div>
         @endif
 
-        <form action="{{ route('profile_submit') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('admin_profile_submit') }}" method="post" enctype="multipart/form-data">
             @csrf
             <table>
 
                 <tr>
                     <td>Existing Photo: </td>
                     <td>
-                        @if (Auth::guard('web')->user()->photo == null)
+                        @if (Auth::guard('admin')->user()->photo == null)
                             No Photo Found
                         @else
-                            <img src="{{ asset('uploads/' . Auth::guard('web')->user()->photo) }}" alt="user photo "
+                            <img src="{{ asset('uploads/' . Auth::guard('admin')->user()->photo) }}" alt="admin photo "
                                 style="width:100px;height:auto;" />
                         @endif
                     </td>
@@ -88,34 +88,13 @@
                 </tr>
                 <tr>
                     <td>Name: </td>
-                    <td><input type="text" name="name" value="{{ Auth::guard('web')->user()->name }}"></td>
+                    <td><input type="text" name="name" value="{{ Auth::guard('admin')->user()->name }}"></td>
                 </tr>
                 <tr>
                     <td>Email: </td>
-                    {{-- <td><input type="text" name="email" value="{{ Auth::guard('web')->user()->email }}"></td> --}}
-                    <td><input type="text" value="{{ Auth::guard('web')->user()->email }}" readonly></td>
+                    <td><input type="text" value="{{ Auth::guard('admin')->user()->email }}" readonly></td>
                 </tr>
-                <tr>
-                    <td>Phone: </td>
-                    <td><input type="text" name="phone" value="{{ Auth::guard('web')->user()->phone }}"></td>
-                </tr>
-                <tr>
-                    <td>Address: </td>
-                    <td><input type="text" name="address" value="{{ Auth::guard('web')->user()->address }}"></td>
-                </tr>
-                <tr>
-                    <td>Country: </td>
-                    <td><input type="text" name="country" value="{{ Auth::guard('web')->user()->country }}"></td>
-                </tr>
-                <tr>
-                    <td>State: </td>
-                    <td><input type="text" name="state" value="{{ Auth::guard('web')->user()->state }}"></td>
-                </tr>
-                <tr>
-                    <td>Zip: </td>
-                    <td><input type="text" name="zip" value="{{ Auth::guard('web')->user()->zip }}"></td>
-                </tr>
-                <div>
+                
                     <tr>
                         <td>Password:</td>
                         <td><input type="password" name="password"></td>
@@ -124,7 +103,7 @@
                         <td>Confirm Password:</td>
                         <td><input type="password" name="confirm_password"></td>
                     </tr>
-                </div>
+
 
                 <tr>
                     <td colspan="2">
@@ -136,7 +115,7 @@
 
     </div>
 
-    @include('user.bottom')
+    {{-- @include('user.bottom') --}}
 
 </body>
 

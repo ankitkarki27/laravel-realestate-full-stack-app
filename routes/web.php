@@ -33,6 +33,8 @@ Route::get('/logout',[UserController::class,'logout'])->name('logout');
 // once the admin is logged in admin middlware is used
 Route::middleware('admin')->prefix('admin')->group(function(){
     Route::get('/dashboard',[AdminController::class,'dashboard'])->name('admin_dashboard');
+    Route::get('/profile',[AdminController::class,'admin_profile'])->name('admin_profile');
+    Route::post('/profile-submit',[AdminController::class,'admin_profile_submit'])->name('admin_profile_submit');
 });
 
 Route::prefix('admin')->group(function(){
