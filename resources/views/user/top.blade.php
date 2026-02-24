@@ -8,8 +8,9 @@
              <a href="{{ route('home') }}">{{ auth()->user()->name }}</a>
              <a href="{{ route('profile') }}">Profile </a>
              <a href="{{ route('dashboard') }}">Dashboard </a>
-             <a href="{{ route('logout') }}">Logout </a>
+             {{-- <a href="{{ route('logout') }}">Logout </a> --}}
          @else
+             <a href="{{ route('admin_login') }}">Admin Login</a>
              <a href="{{ route('login') }}">Login</a>
              <a href="{{ route('registration') }}">Register</a>
          @endauth

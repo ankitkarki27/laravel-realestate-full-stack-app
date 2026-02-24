@@ -46,7 +46,7 @@
 
 <body>
 
-    {{-- @include('user.top') --}}
+    @include('admin.top')
 
     <div class="content">
         <h2>Profile</h2>
