@@ -43,7 +43,7 @@ class AdminController extends Controller
 
     public function logout(){
         Auth :: guard('admin')->logout();
-        return redirect()->route('admin_login')->with('success','logged out successfully'); 
+        return redirect()->route('admin_login')->with('success','Admin logged out successfully'); 
     }
 
     public function forget_password(){
