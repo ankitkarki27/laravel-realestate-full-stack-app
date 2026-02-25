@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Mail;
 class AdminController extends Controller
 {
     public function dashboard(){
-        return view ('admin.dashboard');
+        return view ('admin.dashboard.index', ['page' => 'dashboard']);
     }
 
     public function login(){
-        return view ('admin.login');
+        return view ('admin.login', ['page' => 'login']);
     }
 
     public function login_submit(Request $request){
@@ -105,7 +105,7 @@ class AdminController extends Controller
 
        public function admin_profile()
     {
-        return view('admin.profile');
+        return view('admin.profile.index', ['page' => 'profile']);
     }
 
     public function admin_profile_submit(Request $request)
@@ -144,4 +144,5 @@ class AdminController extends Controller
         $admin->save();
         return redirect()->back()->with('success','Profile Updated successfully');
     }
+    
 }
