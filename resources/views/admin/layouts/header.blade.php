@@ -66,7 +66,6 @@
         </svg>
       </button>
       <!-- Hamburger Toggle BTN -->
-
       <a href="index.html" class="lg:hidden">
         <img class="dark:hidden" src="./images/logo/logo.svg" alt="Logo" />
         <img
@@ -75,7 +74,6 @@
           alt="Logo"
         />
       </a>
-
       <!-- Application nav menu button -->
       <button
         class="z-99999 flex h-10 w-10 items-center justify-center rounded-lg text-gray-700 hover:bg-gray-100 lg:hidden dark:text-gray-400 dark:hover:bg-gray-800"
@@ -99,7 +97,6 @@
         </svg>
       </button>
       <!-- Application nav menu button -->
-
       <div class="hidden lg:block">
         <form>
           <div class="relative">
@@ -179,7 +176,6 @@
           </svg>
         </button>
         <!-- Dark Mode Toggler -->
-
         <!-- Notification Menu Area -->
         <div
           class="relative"

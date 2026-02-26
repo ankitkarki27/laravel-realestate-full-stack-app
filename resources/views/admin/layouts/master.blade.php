@@ -13,29 +13,21 @@
 <body x-data="{
     sidebarToggle: false,
     darkMode: false
-}" x-init="darkMode = JSON.parse(localStorage.getItem('darkMode'));
-$watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" :class="{ 'dark bg-gray-900': darkMode }">
+        }" x-init="darkMode = JSON.parse(localStorage.getItem('darkMode'));
+        $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" :class="{ 'dark bg-gray-900': darkMode }">
 
     <div class="flex h-screen overflow-hidden">
-
-        {{-- SIDEBAR --}}
         @auth('admin')
             @include('admin.layouts.sidebar')
         @endauth
-
-
-        {{-- MAIN CONTENT AREA --}}
         <div class="relative flex flex-col flex-1 overflow-x-hidden overflow-y-auto">
             @auth('admin')
-                {{-- mobileoverlay --}}
                 @include('admin.layouts.overlay')
             @endauth
 
             @auth('admin')
-                {{-- header --}}
                 @include('admin.layouts.header')
             @endauth
-
 
             {{-- pagecontent --}}
             <main class="p-4 md:p-6">
