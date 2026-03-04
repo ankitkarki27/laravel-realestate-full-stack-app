@@ -72,12 +72,12 @@
                 <tr>
                     <td>Existing Photo: </td>
                     <td>
-                        @if (Auth::guard('web')->user()->photo == null)
-                            No Photo Found
-                        @else
-                            <img src="{{ asset('uploads/' . Auth::guard('web')->user()->photo) }}" alt="user photo "
-                                style="width:100px;height:auto;" />
-                        @endif
+                            @if (Auth::guard('web')->user()->photo == null)
+                                No Photo Found
+                            @else
+                                <img src="{{ asset('uploads/' . Auth::guard('web')->user()->photo) }}" alt="user photo "
+                                    style="width:100px;height:auto;" />
+                            @endif
                     </td>
                 </tr>
                 <tr>

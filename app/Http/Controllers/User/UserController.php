@@ -60,12 +60,12 @@ class UserController extends Controller
 
     public function dashboard()
     {
-        return view('user.dashboard');
+        return view('user.dashboard.index');
     }
 
     public function login()
     {
-        return view('user.login');
+        return view('user.auth.login', ['page' => 'login']);
     }
 
     public function login_submit(Request $request)
@@ -83,18 +83,24 @@ class UserController extends Controller
             'status' => 1,
         ];
 
-
         if (Auth::guard('web')->attempt($data)) {
-            return redirect()->route('dashboard');
+            return redirect()->route('home');
         } else {
             return redirect()->back()->with(['error' => 'Invalid Credentials']);
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
+        // Auth::guard('web')->logout();
+        // return redirect()->route('home')->with('success', 'logged out successfully');
         Auth::guard('web')->logout();
-        return redirect()->route('login')->with('success', 'logged out successfully');
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home')
+            ->with('success', 'Logged out successfully');
     }
 
     public function forget_password()
@@ -201,6 +207,6 @@ class UserController extends Controller
         $user->country = $request->country;
 
         $user->save();
-        return redirect()->back()->with('success','Profile Updated successfully');
+        return redirect()->back()->with('success', 'Profile Updated successfully');
     }
 }

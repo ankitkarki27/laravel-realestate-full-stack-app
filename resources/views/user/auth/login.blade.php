@@ -6,7 +6,7 @@
             <!-- Form -->
             <div class="flex flex-col flex-1 w-full lg:w-1/2">
                 <div class="w-full max-w-md pt-10 mx-auto">
-                    <a href="/"
+                    <a href="./"
                         class="inline-flex items-center text-sm text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
                         <svg class="stroke-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                             viewBox="0 0 20 20" fill="none">
@@ -31,7 +31,7 @@
                           
                             </div>
                           
-                            <form action="{{ route('admin_login_submit') }}" method="post">
+                            <form action="{{ route('login_submit') }}" method="post">
                                 @csrf
                                 <div class="space-y-5">
                                     <!-- Email -->
@@ -83,7 +83,7 @@
                             </form>
                             <div class="mt-5">
                                 <p class="text-sm font-normal text-center text-gray-700 dark:text-gray-400 sm:text-start">
-                                    <a href="{{ route('admin_forget_password') }}"
+                                    <a href="{{ route('forget_password') }}"
                                         class="text-brand-500 hover:text-brand-600 dark:text-brand-400">Forgot password</a>
                                 </p>
                             </div>
@@ -101,7 +101,7 @@
                            <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-16" />
                         </a>
                         <p class="text-center text-gray-400 dark:text-white/60">
-                           Admin Dashboard Template
+                           User Sign in
                         </p>
                     </div>
                 </div>

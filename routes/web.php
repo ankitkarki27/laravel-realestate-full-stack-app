@@ -26,8 +26,7 @@ Route::post('/forget-password',[UserController::class,'forget_password_submit'])
 Route::get('/reset-password/{token}/{email}',[UserController::class,'reset_password'])->name('reset_password');
 Route::post('/reset-password/{token}/{email}',[UserController::class,'reset_password_submit'])->name('reset_password_submit');
     
-Route::get('/logout',[UserController::class,'logout'])->name('logout');
-
+Route::post('/logout',[UserController::class,'logout'])->name('logout');
 
 //Admin,
 // once the admin is logged in admin middlware is used
@@ -49,6 +48,6 @@ Route::prefix('admin')->group(function(){
     Route::get('/reset-password/{token}/{email}',[AdminController::class,'reset_password'])->name('admin_reset_password');
     Route::post('/reset-password/{token}/{email}',[AdminController::class,'reset_password_submit'])->name('admin_reset_password_submit');
     
-    Route::get('/logout',[AdminController::class,'logout'])->name('admin_logout');
+    Route::post('/logout',[AdminController::class,'logout'])->name('admin_logout');
 });
 
