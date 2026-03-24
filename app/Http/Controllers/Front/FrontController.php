@@ -14,4 +14,8 @@ class FrontController extends Controller
     public function about(){
         return view ('front.about');
     }
+
+    public function select_user(){
+        return view ('front.select_user');
+    }
 }

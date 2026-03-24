@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[FrontController::class,'index'])->name('home');
 Route::get('/about',[FrontController::class,'about'])->name('about');
+Route::get('/select_user',[FrontController::class,'select_user'])->name('select_user');
 
 //user , usermiddleware is named as auth in bootstrap/app.php
 Route::middleware('auth')->group(function(){

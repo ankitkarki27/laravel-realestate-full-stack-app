@@ -31,8 +31,6 @@
 " :class="{ 'dark': darkMode }" class="antialiased">
 
     <div class="flex h-screen overflow-hidden bg-gray-50 dark:bg-gray-900">
-        <!-- Sidebar (if any) can go here -->
-        
         <div class="relative flex flex-col flex-1 overflow-x-hidden overflow-y-auto">
             @include('user.layouts.header')
 

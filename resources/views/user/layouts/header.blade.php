@@ -7,7 +7,7 @@
             <!-- Logo Section -->
             <div class="flex-shrink-2">
                 <a href="{{ route('home') }}" class="flex items-center">
-                    <img src="{{ asset('logo/logo.png') }}" alt="RealEstateHomes Logo" class="h-8 w-auto" />
+                    <img src="{{ asset('logo/landmark-logo.png') }}" alt="RealEstateHomes Logo" class="h-8 w-auto" />
                 </a>
             </div>
 
@@ -27,6 +27,16 @@
                 <a href="" class="text-base font-medium text-gray-900 transition-colors hover:text-blue-600">
                     Contact
                 </a>
+
+                @auth
+                    <a href="{{ route('profile') }}">Profile </a>
+                    <a href="{{ route('dashboard') }}">Dashboard </a>
+                    {{-- <a href="{{ route('logout') }}">Logout </a> --}}
+                @else
+                    <a href="{{ route('admin_login') }}">Admin Login</a>
+                    <a href="{{ route('login') }}">Login</a>
+                    <a href="{{ route('registration') }}">Register</a>
+                @endauth
 
                 @auth
                     <!-- User Menu when logged in - Icon Only -->
@@ -60,7 +70,8 @@
                                 <p class="text-xs text-gray-500 truncate">{{ auth()->user()->email }}</p>
                             </div>
 
-                            <a href="{{ route('profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                            <a href="{{ route('profile') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                                 Profile
                             </a>
 
@@ -82,11 +93,18 @@
                     </div>
                 @else
                     <!-- Login/Signup Button for non-logged in users -->
-                    <div class="flex items-center space-x-3">
+                    {{-- <div class="flex items-center space-x-3">
                         <a href="{{ route('login') }}"
                             class="px-4 py-2 text-base font-medium text-gray-900 bg-white border border-gray-900 rounded-lg hover:bg-gray-800 hover:text-white hover:border-gray-900 transition-all inline-flex items-center">
                             <i class="fa-regular fa-user mr-2"></i>
                             Login/Signup
+                        </a>
+                    </div> --}}
+                    <div class="flex items-center space-x-3">
+                        <a href="{{ route('select_user') }}"
+                            class="px-4 py-2 text-base font-medium text-gray-900 bg-white border border-gray-900 rounded-lg hover:bg-gray-800 hover:text-white hover:border-gray-900 transition-all inline-flex items-center">
+                            <i class="fa-regular fa-user mr-2"></i>
+                            Login
                         </a>
                     </div>
                 @endauth

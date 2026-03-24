@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function registration()
     {
-        return view('user.registration');
+        return view('user.auth.registration');
     }
 
     public function registration_submit(Request $request)
@@ -105,7 +105,7 @@ class UserController extends Controller
 
     public function forget_password()
     {
-        return view('user.forget_password');
+        return view('user.auth.forget_password');
     }
 
     public function forget_password_submit(Request $request)

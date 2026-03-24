@@ -46,7 +46,7 @@
 
 <body>
 
-    @include('user.top')
+@extends('admin.layouts.master')
 
     <div class="content">
         <h2>Login</h2>
