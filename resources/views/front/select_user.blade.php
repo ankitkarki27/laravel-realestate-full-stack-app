@@ -52,7 +52,7 @@
                 </p>
 
                 <div class="flex flex-col gap-4">
-                    <a href="{{ route('login') }}"
+                    <a href="{{ route('agent.login') }}"
                         class="w-full px-4 py-3 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800 transition">
                         Login as Agent
                     </a>
