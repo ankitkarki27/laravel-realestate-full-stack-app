@@ -4,7 +4,7 @@
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
 
-            <!-- Logo Section -->
+
             <div class="flex-shrink-2">
                 <a href="{{ route('home') }}" class="flex items-center">
                     <img src="{{ asset('logo/landmark-logo.png') }}" alt="RealEstateHomes Logo" class="h-8 w-auto" />

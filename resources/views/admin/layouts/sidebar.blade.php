@@ -9,7 +9,7 @@
         class="flex items-center gap-2 pt-4 pb-7 sidebar-header">
         <a href="{{ route('admin_dashboard') }}">
             <span class="logo" :class="sidebarToggle ? 'hidden' : ''">
-                <img src="{{ asset('logo/logo.png') }}" alt="Logo" class="h-12" />
+                <img src="{{ asset('logo/landmark-logo.png') }}" alt="Logo" class="h-8" />
             </span>
             <img class="logo-icon" :class="sidebarToggle ? 'lg:block' : 'hidden'" src="{{ asset('logo/logo.png') }}"
                 alt="Logo" />

@@ -165,7 +165,7 @@ class UserController extends Controller
 
     public function profile()
     {
-        return view('user.profile');
+        return view('user.profile.index');
     }
 
     public function profile_submit(Request $request)
