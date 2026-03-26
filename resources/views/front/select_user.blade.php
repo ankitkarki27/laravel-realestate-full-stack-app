@@ -57,7 +57,7 @@
                         Login as Agent
                     </a>
 
-                    <a href="{{ route('registration') }}"
+                      <a href="{{ route('agent.registration') }}"
                         class="w-full px-4 py-3 text-sm font-medium text-gray-900 border border-gray-900 rounded-lg hover:bg-gray-900 hover:text-white transition">
                         Register as Agent
                     </a>

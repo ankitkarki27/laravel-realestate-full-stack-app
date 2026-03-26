@@ -1,54 +1,105 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Agent\AgentController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/',[FrontController::class,'index'])->name('home');
-Route::get('/about',[FrontController::class,'about'])->name('about');
-Route::get('/select_user',[FrontController::class,'select_user'])->name('select_user');
+Route::get('/', [FrontController::class, 'index'])->name('home');
+Route::get('/about', [FrontController::class, 'about'])->name('about');
+Route::get('/select_user', [FrontController::class, 'select_user'])->name('select_user');
 
 //user , usermiddleware is named as auth in bootstrap/app.php
-Route::middleware('auth')->group(function(){
-    Route::get('/dashboard',[UserController::class,'dashboard'])->name('dashboard');
-    Route::get('/profile',[UserController::class,'profile'])->name('profile');
-    Route::post('/profile-submit',[UserController::class,'profile_submit'])->name('profile_submit');
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+    Route::post('/profile-submit', [UserController::class, 'profile_submit'])->name('profile_submit');
 });
 
-Route::get('/registration',[UserController::class,'registration'])->name('registration');
-Route::post('/registration',[UserController::class,'registration_submit'])->name('registration_submit');
-Route::get('/registration_verify/{token}/{email}',[UserController::class,'registration_verify'])->name('registration_verify');
+Route::get('/registration', [UserController::class, 'registration'])->name('registration');
+Route::post('/registration', [UserController::class, 'registration_submit'])->name('registration_submit');
+Route::get('/registration_verify/{token}/{email}', [UserController::class, 'registration_verify'])->name('registration_verify');
 
-Route::get('/login',[UserController::class,'login'])->name('login');
-Route::post('/login',[UserController::class,'login_submit'])->name('login_submit');
-Route::get('/forget-password',[UserController::class,'forget_password'])->name('forget_password');
-Route::post('/forget-password',[UserController::class,'forget_password_submit'])->name('forget_password_submit');
-Route::get('/reset-password/{token}/{email}',[UserController::class,'reset_password'])->name('reset_password');
-Route::post('/reset-password/{token}/{email}',[UserController::class,'reset_password_submit'])->name('reset_password_submit');
-    
-Route::post('/logout',[UserController::class,'logout'])->name('logout');
+Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::post('/login', [UserController::class, 'login_submit'])->name('login_submit');
+Route::get('/forget-password', [UserController::class, 'forget_password'])->name('forget_password');
+Route::post('/forget-password', [UserController::class, 'forget_password_submit'])->name('forget_password_submit');
+Route::get('/reset-password/{token}/{email}', [UserController::class, 'reset_password'])->name('reset_password');
+Route::post('/reset-password/{token}/{email}', [UserController::class, 'reset_password_submit'])->name('reset_password_submit');
+
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
+
+
+
+//agent , usermiddleware is named as auth in bootstrap/app.php
+
+Route::prefix('agent')->name('agent.')->middleware('agent')->group(function () {
+    Route::get('/dashboard/index',[AgentController::class,'dashboard'])->name('dashboard');
+    Route::get('/profile',[AgentController::class,'profile'])->name('profile');
+    Route::post('/profile-submit',[AgentController::class,'profile_submit'])->name('profile_submit');
+});
+
+Route::prefix('agent')->name('agent.')->controller(AgentController::class)->group(function () {
+    // Registration
+    Route::get('registration', 'registration')->name('registration');
+    Route::post('registration', 'registration_submit')->name('registration_submit');
+    Route::get('registration_verify/{token}/{email}', 'registration_verify')->name('registration_verify');
+
+    // Login & password
+    Route::get('login', 'login')->name('login');
+    Route::post('login', 'login_submit')->name('login_submit');
+    Route::get('forget-password', 'forget_password')->name('forget_password');
+    Route::post('forget-password', 'forget_password_submit')->name('forget_password_submit');
+    Route::get('reset-password/{token}/{email}', 'reset_password')->name('reset_password');
+    Route::post('reset-password/{token}/{email}', 'reset_password_submit')->name('reset_password_submit');
+
+    // Logout
+    Route::post('logout', 'logout')->name('logout');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Admin,
 // once the admin is logged in admin middlware is used
-Route::middleware('admin')->prefix('admin')->group(function(){
-    Route::get('/dashboard',[AdminController::class,'dashboard'])->name('admin_dashboard');
-    Route::get('/profile',[AdminController::class,'admin_profile'])->name('admin_profile');
-    Route::post('/profile-submit',[AdminController::class,'admin_profile_submit'])->name('admin_profile_submit');
+Route::middleware('admin')->prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin_dashboard');
+    Route::get('/profile', [AdminController::class, 'admin_profile'])->name('admin_profile');
+    Route::post('/profile-submit', [AdminController::class, 'admin_profile_submit'])->name('admin_profile_submit');
 });
 
-Route::prefix('admin')->group(function(){
-    Route::get('/',function(){
+Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
         return redirect()->route('admin_login');
     });
 
-    Route::get('/login',[AdminController::class,'login'])->name('admin_login');
-    Route::post('/login',[AdminController::class,'login_submit'])->name('admin_login_submit');
-    Route::get('/forget-password',[AdminController::class,'forget_password'])->name('admin_forget_password');
-    Route::post('/forget-password',[AdminController::class,'forget_password_submit'])->name('admin_forget_password_submit');
-    Route::get('/reset-password/{token}/{email}',[AdminController::class,'reset_password'])->name('admin_reset_password');
-    Route::post('/reset-password/{token}/{email}',[AdminController::class,'reset_password_submit'])->name('admin_reset_password_submit');
-    
-    Route::post('/logout',[AdminController::class,'logout'])->name('admin_logout');
-});
+    Route::get('/login', [AdminController::class, 'login'])->name('admin_login');
+    Route::post('/login', [AdminController::class, 'login_submit'])->name('admin_login_submit');
+    Route::get('/forget-password', [AdminController::class, 'forget_password'])->name('admin_forget_password');
+    Route::post('/forget-password', [AdminController::class, 'forget_password_submit'])->name('admin_forget_password_submit');
+    Route::get('/reset-password/{token}/{email}', [AdminController::class, 'reset_password'])->name('admin_reset_password');
+    Route::post('/reset-password/{token}/{email}', [AdminController::class, 'reset_password_submit'])->name('admin_reset_password_submit');
 
+    Route::post('/logout', [AdminController::class, 'logout'])->name('admin_logout');
+});

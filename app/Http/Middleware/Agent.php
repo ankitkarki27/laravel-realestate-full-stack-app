@@ -17,7 +17,7 @@ class Agent
     public function handle(Request $request, Closure $next): Response
     {
           if(!Auth::guard('agent')->check()){
-            return redirect()->route('agent_login');
+            return redirect()->route('agent.login');
         }
         return $next($request);
     }
