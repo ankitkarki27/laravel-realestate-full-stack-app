@@ -181,10 +181,11 @@ class AgentController extends Controller
                 'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
             $final_name = 'agent_' . time() . '.' . $request->photo->extension();
-            if ($agent->photo && file_exists(public_path('uploads/agents/' . $agent->photo))) {
-                unlink(public_path('uploads/agents/' . $agent->photo));
+            if ($agent->photo && file_exists(public_path('uploads/agent/' . $agent->photo))) {
+                unlink(public_path('uploads/agent/' . $agent->photo));
             }
-            $request->photo->move(public_path('uploads'), $final_name);
+            // create folder if not exists
+            $request->photo->move(public_path('uploads/agent'), $final_name);
             $agent->photo = $final_name;
         }
 
